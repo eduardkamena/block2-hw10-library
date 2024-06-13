@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.streams.services.EmployeeService;
-import pro.sky.streams.services.EmployeeBook;
+import pro.sky.streams.services.Employee;
 
 import java.util.List;
 import java.util.Map;
@@ -21,22 +21,22 @@ public class DepartmentController {
     }
 
     @GetMapping(path = "/max-salary")
-    public EmployeeBook getMaxSalaryEmployee(@RequestParam("departmentId") int department) {
+    public Employee getMaxSalaryEmployee(@RequestParam("departmentId") int department) {
         return employeeService.getMaxSalaryEmployee(department);
     }
 
     @GetMapping(path = "/min-salary")
-    public EmployeeBook getMinSalaryEmployee(@RequestParam("departmentId") int department) {
+    public Employee getMinSalaryEmployee(@RequestParam("departmentId") int department) {
         return employeeService.getMinSalaryEmployee(department);
     }
 
     @GetMapping(path = "/all-sorted")
-    public Map<Integer, List<EmployeeBook>> getAllSortedDepartmentsEmployee() {
+    public Map<Integer, List<Employee>> getAllSortedDepartmentsEmployee() {
         return employeeService.getAllSortedDepartmentsEmployee();
     }
 
     @GetMapping(path = "/all")
-    public List<EmployeeBook> getDepartmentEmployees(@RequestParam("departmentId") int department) {
+    public List<Employee> getDepartmentEmployees(@RequestParam("departmentId") int department) {
         return employeeService.getDepartmentEmployees(department);
     }
 }

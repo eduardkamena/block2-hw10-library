@@ -5,6 +5,8 @@ import java.util.Map;
 
 public interface EmployeeService {
 
+    void checkEmployee(String firstName, String lastName);
+
     // Метод записи нового сотрудника
     void addEmployee(String firstName, String lastName, int department, int salary);
 
@@ -12,19 +14,19 @@ public interface EmployeeService {
     void removeEmployee(String firstName, String lastName, int department, int salary);
 
     // Метод для поиска сотрудника
-    EmployeeBook findEmployee(String firstName, String lastName, int department, int salary);
+    Employee findEmployee(String firstName, String lastName, int department, int salary);
 
     // Метод печати всех сотрудников
-    Map<String, EmployeeBook> printEmployee();
+    Map<String, Employee> printEmployee();
 
     // Метод печати размера массива
     int printSize();
 
-    EmployeeBook getMinSalaryEmployee(int department);
+    Employee getMinSalaryEmployee(int department);
 
-    EmployeeBook getMaxSalaryEmployee(int department);
+    Employee getMaxSalaryEmployee(int department);
 
-    List<EmployeeBook> getDepartmentEmployees(int department);
+    List<Employee> getDepartmentEmployees(int department);
 
-    Map<Integer, List<EmployeeBook>> getAllSortedDepartmentsEmployee();
+    Map<Integer, List<Employee>> getAllSortedDepartmentsEmployee();
 }

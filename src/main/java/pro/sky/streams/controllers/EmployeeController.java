@@ -5,7 +5,7 @@ import pro.sky.streams.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.streams.exceptions.EmployeeNotFoundException;
 import pro.sky.streams.exceptions.EmployeeStorageIsFullException;
 import pro.sky.streams.services.EmployeeService;
-import pro.sky.streams.services.EmployeeBook;
+import pro.sky.streams.services.Employee;
 
 import java.util.Map;
 
@@ -36,15 +36,15 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/find")
-    public EmployeeBook findEmployee(@RequestParam("firstName") String firstName,
-                                     @RequestParam("lastName") String lastName,
-                                     @RequestParam("department") int department,
-                                     @RequestParam("salary") int salary) {
+    public Employee findEmployee(@RequestParam("firstName") String firstName,
+                                 @RequestParam("lastName") String lastName,
+                                 @RequestParam("department") int department,
+                                 @RequestParam("salary") int salary) {
         return employeeService.findEmployee(firstName, lastName, department, salary);
     }
 
     @GetMapping(path = "/print")
-    public Map<String, EmployeeBook> printEmployee() {
+    public Map<String, Employee> printEmployee() {
         return employeeService.printEmployee();
     }
 

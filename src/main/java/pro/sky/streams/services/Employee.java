@@ -1,6 +1,6 @@
 package pro.sky.streams.services;
 
-public record EmployeeBook(String firstName, String lastName, int department, int salary) {
+public record Employee(String firstName, String lastName, int department, int salary) {
 
 
     @Override
