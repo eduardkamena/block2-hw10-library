@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pro.sky</groupId>
-	<artifactId>block2-hw9-streams</artifactId>
+	<artifactId>block2-hw10-library</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>block2-hw9-streams</name>
+	<name>block2-hw10-library</name>
 	<description>Streams in Java</description>
 	<properties>
 		<java.version>17</java.version>
@@ -26,6 +26,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.14.0</version>
 		</dependency>
 	</dependencies>
 

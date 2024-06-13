@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Block2Hw9StreamsApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
