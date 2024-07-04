@@ -7,8 +7,9 @@ import pro.sky.streams.exceptions.EmployeeStorageIsFullException;
 import pro.sky.streams.exceptions.InvalidCheckEmployeeException;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
+import static java.util.Comparator.*;
+import static java.util.stream.Collectors.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 @Service
@@ -106,7 +107,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees.values()
                 .stream()
                 .filter(employee -> employee.department() == department)
-                .min(Comparator.comparing(Employee::salary))
+                .min(comparing(Employee::salary))
                 .orElse(null);
     }
 
@@ -115,7 +116,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees.values()
                 .stream()
                 .filter(employee -> employee.department() == department)
-                .max(Comparator.comparing(Employee::salary))
+                .max(comparing(Employee::salary))
                 .orElse(null);
     }
 
@@ -131,6 +132,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Map<Integer, List<Employee>> getAllSortedDepartmentsEmployee() {
         return employees.values()
                 .stream()
-                .collect(Collectors.groupingBy(Employee::department));
+                .collect(groupingBy(Employee::department));
     }
 }
