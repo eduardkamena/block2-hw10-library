@@ -1,13 +1,16 @@
 package pro.sky.streams.services;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.streams.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.streams.exceptions.EmployeeNotFoundException;
 import pro.sky.streams.exceptions.EmployeeStorageIsFullException;
+import pro.sky.streams.exceptions.InvalidCheckEmployeeException;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static java.util.Comparator.*;
+import static java.util.stream.Collectors.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -39,18 +42,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void checkEmployee(String firstName, String lastName) {
-        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
-            throw new EmployeeNotFoundException("Имя должно содержать только буквы");
+        if (!isAlpha(firstName) || !isAlpha(lastName)) {
+            throw new InvalidCheckEmployeeException("Имя должно содержать только буквы");
         }
     }
 
     // Метод записи нового сотрудника
     @Override
-    public void addEmployee(String firstName, String lastName, int department, int salary) {
+    public void addEmployee(String firstName, String lastName, int department, double salary) {
         checkEmployee(firstName, lastName);
         Employee employee = new Employee(
-                StringUtils.capitalize(firstName),
-                StringUtils.capitalize(lastName),
+                firstName,
+                lastName,
                 department,
                 salary);
         if (employees.size() >= MAX_LIST) {
@@ -64,11 +67,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     // Метод удаления сотрудника
     @Override
-    public void removeEmployee(String firstName, String lastName, int department, int salary) {
+    public void removeEmployee(String firstName, String lastName, int department, double salary) {
         checkEmployee(firstName, lastName);
         Employee employee = new Employee(
-                StringUtils.capitalize(firstName),
-                StringUtils.capitalize(lastName),
+                firstName,
+                lastName,
                 department,
                 salary);
         employees.remove(employee.lastName(), employee);
@@ -76,11 +79,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     // Метод для поиска сотрудника
     @Override
-    public Employee findEmployee(String firstName, String lastName, int department, int salary) {
+    public Employee findEmployee(String firstName, String lastName, int department, double salary) {
         checkEmployee(firstName, lastName);
         Employee employee = new Employee(
-                StringUtils.capitalize(firstName),
-                StringUtils.capitalize(lastName),
+                firstName,
+                lastName,
                 department,
                 salary);
         if (!employees.containsValue(employee)) {
@@ -104,7 +107,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees.values()
                 .stream()
                 .filter(employee -> employee.department() == department)
-                .min(Comparator.comparing(Employee::salary))
+                .min(comparing(Employee::salary))
                 .orElse(null);
     }
 
@@ -113,7 +116,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees.values()
                 .stream()
                 .filter(employee -> employee.department() == department)
-                .max(Comparator.comparing(Employee::salary))
+                .max(comparing(Employee::salary))
                 .orElse(null);
     }
 
@@ -129,8 +132,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Map<Integer, List<Employee>> getAllSortedDepartmentsEmployee() {
         return employees.values()
                 .stream()
-                .collect(Collectors.groupingBy(Employee::department));
+                .collect(groupingBy(Employee::department));
     }
 }
-
-

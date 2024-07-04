@@ -23,7 +23,7 @@ public class EmployeeController {
     public void addEmployee(@RequestParam("firstName") String firstName,
                             @RequestParam("lastName") String lastName,
                             @RequestParam("department") int department,
-                            @RequestParam("salary") int salary) {
+                            @RequestParam("salary") double salary) {
         employeeService.addEmployee(firstName, lastName, department, salary);
     }
 
@@ -31,7 +31,7 @@ public class EmployeeController {
     public void removeEmployee(@RequestParam("firstName") String firstName,
                                @RequestParam("lastName") String lastName,
                                @RequestParam("department") int department,
-                               @RequestParam("salary") int salary) {
+                               @RequestParam("salary") double salary) {
         employeeService.removeEmployee(firstName, lastName, department, salary);
     }
 
@@ -39,7 +39,7 @@ public class EmployeeController {
     public Employee findEmployee(@RequestParam("firstName") String firstName,
                                  @RequestParam("lastName") String lastName,
                                  @RequestParam("department") int department,
-                                 @RequestParam("salary") int salary) {
+                                 @RequestParam("salary") double salary) {
         return employeeService.findEmployee(firstName, lastName, department, salary);
     }
 

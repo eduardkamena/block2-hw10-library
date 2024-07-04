@@ -9,4 +9,3 @@ public class EmployeeNotFoundException extends UnsupportedOperationException {
         super(message);
     }
 }
-

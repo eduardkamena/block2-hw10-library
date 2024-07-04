@@ -1,7 +1,15 @@
 package pro.sky.streams.services;
 
-public record Employee(String firstName, String lastName, int department, int salary) {
+import static org.apache.commons.lang3.StringUtils.*;
 
+public record Employee(String firstName, String lastName, int department, double salary) {
+
+    public Employee(String firstName, String lastName, int department, double salary) {
+        this.firstName = capitalize(firstName.toLowerCase());
+        this.lastName = capitalize(lastName.toLowerCase());
+        this.department = department;
+        this.salary = salary;
+    }
 
     @Override
     public String toString() {
