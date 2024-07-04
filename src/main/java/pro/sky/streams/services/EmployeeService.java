@@ -8,13 +8,13 @@ public interface EmployeeService {
     void checkEmployee(String firstName, String lastName);
 
     // Метод записи нового сотрудника
-    void addEmployee(String firstName, String lastName, int department, int salary);
+    void addEmployee(String firstName, String lastName, int department, double salary);
 
     // Метод удаления сотрудника
-    void removeEmployee(String firstName, String lastName, int department, int salary);
+    void removeEmployee(String firstName, String lastName, int department, double salary);
 
     // Метод для поиска сотрудника
-    Employee findEmployee(String firstName, String lastName, int department, int salary);
+    Employee findEmployee(String firstName, String lastName, int department, double salary);
 
     // Метод печати всех сотрудников
     Map<String, Employee> printEmployee();
